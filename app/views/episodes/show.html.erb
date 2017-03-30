@@ -29,10 +29,9 @@
 
   <div id="episode_content">
     <div class="wrapper_skinny">
-      <img src="<%= asset_path( 'yorki_1.jpg' ) %>"
-         alt="" class="current_episode_thumbnail">
-         <h2><%= @episode.title %></h2>
-         <p class="description"><%= @episode.description %></p>
+      <%= image_tag @episode.episode_logo.url(:thumb), class: "current_episode_thumbnail" %>
+      <h2><%= @episode.title %></h2>
+      <p class="description"><%= @episode.description %></p>
     </div>
   </div>
 
@@ -42,8 +41,8 @@
         <% @episodes.each do |episode| %>
         <li class="cf">
           <div class="episode_thumbnail">
-            <a href="#">
-              <img src="<%= asset_path( 'yorki_1.jpg' ) %>" alt="">
+            <a href="#l">
+              <%= image_tag episode.episode_logo.url(:thumb) %>
             </a>
           </div>
           <div class="episode_overview">

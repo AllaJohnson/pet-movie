@@ -1,4 +1,6 @@
 class EpisodesController < ApplicationController
+  before_action :authenticate_podcast!, exept: [:show]
+  before_filter :require_permission
   before_action :find_podcast
   before_action :find_episode, only: [:show, :edit, :update, :destroy]
 
@@ -30,15 +32,15 @@ class EpisodesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @episode.destroy
     redirect_to root_path
-  end  
+  end
 
   private
 
   def episode_params
-    params.require(:episode).permit(:title, :description)
+    params.require(:episode).permit(:title, :description, :episode_logo)
   end
 
   def find_podcast
@@ -47,5 +49,12 @@ class EpisodesController < ApplicationController
 
   def find_episode
     @episode = Episode.find(params[:id])
+  end
+
+  def require_permission
+    @podcast =Podcast.find(params[:podcast_id])
+    if current_podcast != @podcast
+      redirect_to root_path, notice: "Sorry, You haven't permission!"
+    end
   end
 end

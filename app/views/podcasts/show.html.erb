@@ -1,6 +1,7 @@
   <div id="podcasts_show">
     <div id="show_banner">
       <div class="wrapper_skinny">
+        <%= image_tag @podcast.logo.url(:thumb) %>
       <h1><%= @podcast.title %></h1>
       <p class="description"><%= @podcast.description %></p>
 
@@ -31,8 +32,8 @@
         <% @episodes.each do |episode| %>
         <li class="cf">
           <div class="episode_thumbnail">
-            <a href="#">
-              <img src="<%= asset_path( 'yorki_1.jpg' ) %>" alt="">
+            <a href="#l">
+              <%= image_tag episode.episode_logo.url(:thumb) %>
             </a>
           </div>
           <div class="episode_overview">
