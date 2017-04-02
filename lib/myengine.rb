@@ -1,0 +1,1 @@
+require "paperclip/av/transcoder"

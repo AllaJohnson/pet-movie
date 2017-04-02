@@ -18,6 +18,11 @@ $light: #EDEFF5;
   margin: 0 auto;
 }
 
+.wrapper_video {
+  width: 65%;
+  margin: 0 auto;
+}
+
 .cf:before, .cf:after {
   content: " ";
   display: table;
@@ -185,4 +190,3 @@ textarea {
 @import "normalize";
 @import "welcome";
 @import "podcasts";
-@import "jplayer.pink.flag"
