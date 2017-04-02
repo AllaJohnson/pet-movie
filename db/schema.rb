@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330013510) do
+ActiveRecord::Schema.define(version: 20170331213206) do
 
   create_table "episodes", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20170330013510) do
     t.string   "episode_logo_content_type"
     t.integer  "episode_logo_file_size"
     t.datetime "episode_logo_updated_at"
+    t.string   "mp3_file_name"
+    t.string   "mp3_content_type"
+    t.integer  "mp3_file_size"
+    t.datetime "mp3_updated_at"
     t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
   end
 

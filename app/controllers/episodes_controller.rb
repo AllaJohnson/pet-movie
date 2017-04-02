@@ -40,7 +40,7 @@ class EpisodesController < ApplicationController
   private
 
   def episode_params
-    params.require(:episode).permit(:title, :description, :episode_logo)
+    params.require(:episode).permit(:title, :description, :episode_logo, :mp3)
   end
 
   def find_podcast
