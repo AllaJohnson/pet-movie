@@ -1,1 +1,1 @@
-# require "paperclip/av/transcoder"
+require "paperclip/av/transcoder"

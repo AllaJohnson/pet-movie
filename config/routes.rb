@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+   default_url_options :host => "locajhost:3000"
   devise_for :podcasts
 
   resources :podcasts, only: [:index, :show] do
