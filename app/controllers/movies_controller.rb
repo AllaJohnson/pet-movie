@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movies = Movie.where(podcast_id: @user).order("created_at DESC").reject { |e| e.id == @movie.id }
+    @movies = Movie.where(user_id: @user).order("created_at DESC").reject { |e| e.id == @movie.id }
   end
 
   def edit
