@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :users
    #default_url_options :host => "locajhost:3000"
-  devise_for :podcasts
+  #devise_for :podcasts
 
-  resources :podcasts, only: [:index, :show] do
-     resources :episodes
+  resources :users, only: [:index, :show] do
+     resources :movies
   end
 
-   authenticated :podcast do
-       root 'podcasts#dashboard', as: "authenticated_root"
+   authenticated :user do
+       root 'users#dashboard', as: "authenticated_root"
    end
 
    root 'welcome#index'

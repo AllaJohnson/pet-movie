@@ -1,5 +1,3 @@
-
-<h1>Edit Episode</h1>
 <div id="podcasts_show">
   <div id="show_banner">
     <div class="wrapper_skinny">
@@ -10,10 +8,10 @@
   <div id="links">
     <div class="wrapper_skinny">
       <ul>
-        <li><%= link_to "Episodes", root_path %></li>
-        <li><%= link_to "New Episode", new_podcast_episode_path(@podcast) %></li>
-        <li><%= link_to "Account Settings", edit_podcast_registration_path %></li>
-        <li><%= link_to "ViewPodcast", podcast_path(current_podcast) %></li>
+        <li><%= link_to "Movies", root_path %></li>
+        <li><%= link_to "New Movie", new_user_movie_path(@user), class: "current" %></li>
+        <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+        <li><%= link_to "Profile", user_path(current_user) %></li>
       </ul>
     </div>
   </div>

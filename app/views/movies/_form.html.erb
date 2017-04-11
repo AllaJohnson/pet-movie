@@ -1,4 +1,4 @@
-<%= form_for ([@podcast, @episode]) do |f| %>
+<%= form_for ([@user, @movie]) do |f| %>
 
   <div class="field">
    <%= f.label :title %> <br>
@@ -11,8 +11,8 @@
   </div>
 
   <div class="field">
-     <%= f.label :episode_logo %> <br>
-     <%= f.file_field :episode_logo %>
+     <%= f.label :movie_logo %> <br>
+     <%= f.file_field :movie_logo %>
   </div>
 
   <div class="field">

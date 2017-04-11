@@ -21,13 +21,13 @@
       <%= devise_error_messages! %>
 
       <div class="field">
-        <%= f.label :title %><br />
-        <%= f.text_field :title, autofocus: true %>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true %>
       </div>
 
       <div class="field">
-        <%= f.label :description %><br />
-        <%= f.text_area :description %>
+        <%= f.label :tell_something %><br />
+        <%= f.text_area :tell_something %>
       </div>
 
       <div class="field">
@@ -36,31 +36,15 @@
       </div>
 
       <div class="field">
-        <%= f.label :logo %><br />
-        <%= f.file_field :logo %>
+        <%= f.label :photo %><br />
+        <%= f.file_field :photo %>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
-       <h3>Links</h3>
-
-       <div class="field">
-         <%= f.label :itunes %><br />
-         <%= f.text_field :itunes %>
-       </div>
-
-       <div class="field">
-         <%= f.label :stitcher %><br />
-         <%= f.text_field :stitcher %>
-       </div>
-
-       <div class="field">
-         <%= f.label :podbay %><br />
-         <%= f.text_field :podbay %>
-       </div>
-
+       
       <div class="field">
         <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
         <%= f.password_field :password, autocomplete: "off" %>

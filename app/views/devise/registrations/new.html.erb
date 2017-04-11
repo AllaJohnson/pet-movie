@@ -9,8 +9,8 @@
     <%= devise_error_messages! %>
 
       <div class="field">
-        <%= f.label :title %><br />
-        <%= f.text_field :title, autofocus: true %>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true %>
       </div>
 
       <div class="field">
@@ -19,10 +19,10 @@
       </div>
 
       <div class="field">
-        <%= f.label :logo %><br />
-        <%= f.file_field :logo %>
+        <%= f.label :photo %><br />
+        <%= f.file_field :photo %>
       </div>
-    
+
       <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>

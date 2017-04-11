@@ -10,61 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402033610) do
-
-  create_table "episodes", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "podcast_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "episode_logo_file_name"
-    t.string   "episode_logo_content_type"
-    t.integer  "episode_logo_file_size"
-    t.datetime "episode_logo_updated_at"
-    t.string   "mp3_file_name"
-    t.string   "mp3_content_type"
-    t.integer  "mp3_file_size"
-    t.datetime "mp3_updated_at"
-    t.string   "video_file_name"
-    t.string   "video_content_type"
-    t.integer  "video_file_size"
-    t.datetime "video_updated_at"
-    t.string   "video_meta_file_name"
-    t.string   "video_meta_content_type"
-    t.integer  "video_meta_file_size"
-    t.datetime "video_meta_updated_at"
-    t.string   "string_file_name"
-    t.string   "string_content_type"
-    t.integer  "string_file_size"
-    t.datetime "string_updated_at"
-    t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
-  end
-
-  create_table "podcasts", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "title"
-    t.text     "description"
-    t.string   "itunes"
-    t.string   "stitcher"
-    t.string   "podbay"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.index ["email"], name: "index_podcasts_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_podcasts_on_reset_password_token", unique: true
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
