@@ -1,18 +1,21 @@
 
-  <div id="banner" class="podcasts_banner">
-    <h1>Discover your new favorite Users!</h1>
+<div id="banner" class="users_banner">
+    <h1>Be first among equals</h1>
   </div>
 
-  <div id="podcasts" class="cf">
+  <div id="users" class="cf">
     <div class="wrapper">
       <ul class="cf">
         <% @users.each do |user| %>
           <%= link_to user do %>
             <li>
               <%= image_tag user.photo.url(:thumb) %>
-                <div class="podcasts_overview">
+                <div class="users_overview">
                 <h2><%= user.name %></h2>
-                <p class="episode_count">1 Movie</p>
+                <p class="movie_count">
+                  <%= user.movies.count %>
+                  <%= "Movie".pluralize(user.movies.count) %>
+                </p>
               </div>
             </li>
           <% end %>

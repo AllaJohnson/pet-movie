@@ -74,11 +74,11 @@ $light: #EDEFF5;
     float: left;
     text-transform: uppercase;
     font-weight: 700;
-    color: $dark;
+    color: $highlight;
     text-decoration: none;
     letter-spacing: 1px;
     &:hover {
-      color: $highlight;
+      color: lighten($dark, 45%);
     }
   }
   nav {
@@ -90,7 +90,7 @@ $light: #EDEFF5;
         display: inline;
         margin-left: 2.5rem;
         a {
-          color: $dark;
+          color: lighten($dark,50%);
           text-decoration: none;
           &:hover {
             color: $highlight;
@@ -105,19 +105,18 @@ $light: #EDEFF5;
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
-margin-bottom: 4rem;
+margin-bottom: 2rem;
+padding: 8rem ;
 h1 {
   text-align: center;
   color: $white;
   font-size: 3rem;
   font-weight: 300;
   letter-spacing: 1px;
-  margin: 0;
-  padding: 8rem 0;
   }
 }
-.podcasts_banner {
-  background-image: image-url('bg-BigStone.jpg');
+.users_banner {
+  background-image: image-url('yorki_2.jpg');
 }
 
 .pagination:before, .pagination:after {

@@ -1,32 +1,17 @@
-  <div id="podcasts_show">
-    <div id="show_banner">
-     <div class="wrapper_skinny">
-        <%= image_tag @user.photo.url(:thumb) %>
-        <h1><%= @user.name %></h1>
-        <p class="description"><%= @user.tell_something %></p>
-     </div>
-  </div>
+  <%= render "movies/user_banner" %>
 
-  <div id="breadcrumb">
-    <%= link_to users_path do %>
-      All users
-      <span>/</span>
-      <%= @user.name %>
-    <% end %>
-  </div>
-
-  <div id="episodes">
+  <div id="movies">
     <div class="wrapper_skinny">
       <ul class="cf">
         <% @movies.each do |movie| %>
         <li class="cf">
-          <div class="episode_thumbnail">
-            <a href="#l">
+          <div class="movie_thumbnail">
+            <a href="#">
               <%= image_tag movie.movie_logo.url(:thumb) %>
             </a>
           </div>
-          <div class="episode_overview">
-            <h2><%= link_to movie.title, user_movie_path(@user, movie) %></h2>
+          <div class="movie_overview">
+            <h3><%= link_to movie.title, user_movie_path(@user, movie) %></h3>
             <p class="description"><%= truncate(movie.description, length: 160) %></p>
           </div>
         </li>

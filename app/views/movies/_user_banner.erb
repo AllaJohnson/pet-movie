@@ -1,0 +1,8 @@
+<div id="users_show">
+  <div id="show_banner">
+    <div class="wrapper_skinny">
+          <%= image_tag @user.photo.url(:thumb) %>
+      <h1><%= @user.name %></h1>
+      <p class="description"><%= @user.tell_something %></p>
+    </div>
+  </div>

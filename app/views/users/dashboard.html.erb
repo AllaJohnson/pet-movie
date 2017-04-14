@@ -1,9 +1,9 @@
 <%= render 'layouts/header' %>
-  <div id="podcasts_show">
+  <div id="users_show">
     <div id="show_banner">
       <div class="wrapper_skinny">
         <%= image_tag @user.photo.url(:thumb) %>
-        <h1>Dashboard</h1>
+        <h1>Manage your movies.</h1>
       </div>
     </div>
 
@@ -18,18 +18,18 @@
       </div>
     </div>
 
-    <div id="episodes">
+    <div id="movies">
       <div class="wrapper_skinny">
         <ul class="cf">
           <% @movies.each do |movie| %>
             <li class="cf">
-              <div class="episode_thumbnail">
+              <div class="movie_thumbnail">
                 <a href="#">
                   <%= image_tag movie.movie_logo.url(:thumb) %>
                 </a>
               </div>
-              <div class="episode_overview">
-                <h2><%= link_to movie.title, user_movie_path(@user, movie) %></h2>
+              <div class="movie_overview">
+                <h3><%= link_to movie.title, user_movie_path(@user, movie) %></h3>
                 <p class="description"><%= truncate(movie.description, length: 160) %></p>
                 <div class="authorized_links">
                   <%= link_to "Edit", edit_user_movie_path(@user, movie) %>

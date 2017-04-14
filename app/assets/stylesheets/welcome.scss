@@ -1,7 +1,7 @@
 
 /*home*/
 #background {
-      background-image: image-url("bg-BigStone.jpg");
+    background-image: image-url('yorki_2.jpg');
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -11,12 +11,12 @@
     #logo {
       float: left;
       text-transform: uppercase;
-      font-weight: 700;
-      color: $white;
+      font-weight: 900;
+      color: $highlight;
       text-decoration: none;
       letter-spacing: 1px;
       &:hover {
-        color: $highlight;
+        color: darken($highlight, 30%);
       }
     }
     nav {
@@ -28,10 +28,11 @@
           display: inline;
           margin-left: 2.5rem;
           a {
-            color: $white;
+            color: $highlight;
             text-decoration: none;
+            font-weight: 600;
             &:hover {
-              color: $highlight;
+              color: darken($highlight, 30%);
             }
           }
         }
@@ -40,10 +41,10 @@
   }
   h1 {
     color: $white;
-    font-size: 3.5rem;
-    font-weight: 300;
+    font-size: 4.0rem;
+    font-weight: 400;
     letter-spacing: 1px;
-    margin: 7rem 0 2rem 0;
+    margin: 15rem 0 2rem 0;
   }
   .button {
     margin: 1.5rem 2.5% 0 2.5%;
