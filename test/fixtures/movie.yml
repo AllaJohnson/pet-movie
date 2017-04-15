@@ -3,9 +3,9 @@
 one:
   title: MyString
   description: MyText
-  podcast: one
+  user: one
 
 two:
   title: MyString
   description: MyText
-  podcast: two
+  user: two
