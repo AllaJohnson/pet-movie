@@ -54,6 +54,11 @@
     background-image: image-url('yorki_2.jpg');
     text-align: center;
     padding: 7rem 0;
+    img {
+      width: 10%;
+      height: 10%;
+      border-radius: .35rem .35rem 0 0;
+    }
     h1{
       font-size: 2.2rem;
       font-weight: 300;
