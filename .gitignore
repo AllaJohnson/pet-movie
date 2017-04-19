@@ -20,8 +20,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-config/secrets.yml.esse
-config/database.yml.ess
-config/initializers/devise.rb.esse
+config/secrets.yml
+config/database.yml
+config/initializers/devise.rb
 db/schema-old-copy.rb
-config/aws.yml.esse
+config/aws.yml
