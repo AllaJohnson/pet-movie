@@ -21,7 +21,7 @@
 .byebug_history
 
 config/secrets.yml.esse
-config/database.yml.esse
+config/database.yml.ess
 config/initializers/devise.rb.esse
 db/schema-old-copy.rb
 config/aws.yml.esse
