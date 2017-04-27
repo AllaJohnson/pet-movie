@@ -22,6 +22,6 @@
 
 config/secrets.yml
 config/database.yml
-config/initializers/devise.rb
+# config/initializers/devise.rb
 db/schema-old-copy.rb
 config/aws.yml
