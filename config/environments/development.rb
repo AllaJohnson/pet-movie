@@ -60,8 +60,8 @@ Rails.application.configure do
  #   storage: :s3,
  #   s3_credentials: {
  #     bucket: 'pet-podcast',
- #     access_key_id: 'AKIAJI7UMXS5KZEQ6Y3Q',
- #     secret_access_key: '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',
+ #     access_key_id: '',
+ #     secret_access_key: '',
  #     s3_region: 'us-east-1',
  #   }
  # }

@@ -86,18 +86,18 @@ Rails.application.configure do
   # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
 #configuration for Paperclip Amazone S3
- config.paperclip_defaults = {
-   storage: :s3,
-   s3_credentials: {
-     bucket: 'pet-podcast',
-     access_key_id: 'AKIAJI7UMXS5KZEQ6Y3Q',
-     secret_access_key: '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',
-     s3_region: 'us-east-1',
-   }
- }
+ # config.paperclip_defaults = {
+ #   storage: :s3,
+ #   s3_credentials: {
+ #     bucket: 'pet-podcast',
+ #     access_key_id: '',
+ #     secret_access_key: '',
+ #     s3_region: 'us-east-1',
+ #   }
+ # }
 
-# config.paperclip_defaults = {
-#   storage: :s3,
-#   s3_credentials: "#{Rails.root}/config/aws.yml",
-# }
+config.paperclip_defaults = {
+  storage: :s3,
+  s3_credentials: "#{Rails.root}/config/aws.yml",
+}
 end
