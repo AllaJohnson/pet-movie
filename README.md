@@ -24,7 +24,7 @@
 2. Создаем Линукс-пользователя и передаем ему права судо. /// Create a Linux-user and give it the rights of the sudo.
 
      2.1.
- ```
+```
      ssh root@droplet's_IP_address
 
      $ dpkg-reconfigure locales # Для установки дополнительных языковых кодировок при необходимости
@@ -169,10 +169,7 @@
               ....}
 
 ```
-
-
        4.3. Редактируем файл. /// Change the file  /etc/nginx/passenger.conf
-
 
 ```
          $ sudo vi /etc/nginx/passenger.conf  # Во второй строчке прписываем путь к установленному руби
@@ -189,8 +186,7 @@
        4.5. Настраиваем порт 80 nginx для нашего сайта. /// Configure port 80 nginx for our site
 
             Создаем и заходим в файл: /// Create and enter the file:
-
-  ```
+```
          $ sudo vi /etc/nginx/sites-available/my-site  # Копируем, заменяя pet-movie на название своего приложения
                                                        # Copy by replacing the 'pet-movie' with the name of your application
 
@@ -237,11 +233,13 @@
 ```
 
          4.9. Перезагружаем сервер. /// Restart server.
+
 ```
            $ sudo service nginx restart
 
 ```
-           ##'Hello World!'
+
+##Hello World!
 
 
 
@@ -263,19 +261,19 @@
    6.1. Gemfile
 
 ```
-group :development do
-    gem 'capistrano', '~> 3.7', '>= 3.7.1'
-    gem 'capistrano-rails', '~> 1.2'
-    gem 'capistrano-passenger', '~> 0.2.0'
+    group :development do
+        gem 'capistrano', '~> 3.7', '>= 3.7.1'
+        gem 'capistrano-rails', '~> 1.2'
+        gem 'capistrano-passenger', '~> 0.2.0'
 
-    # Add this if you're using rbenv
-    # gem 'capistrano-rbenv', '~> 2.1'
-end
+        # Add this if you're using rbenv
+        # gem 'capistrano-rbenv', '~> 2.1'
+    end
 
 
-    $ bundle install
-    $ bundle --binstubs
-    $ cap install STAGES=production
+        $ bundle install
+        $ bundle --binstubs
+        $ cap install STAGES=production
 ```
 
     6.2.  Capfile
@@ -348,20 +346,21 @@ end
 
 ```
         secrets.yml:
+
 ```
         production:
           secret_key_base: 12325467tugjbmn.m;jhjhvfgdfdxfc vb..........................
 
 ```
 
-    Если изпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)
+    Если иcпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)
 
 ```
     /home/deploy/pet-movie/shims/config/aws.yml
-
 ```
         7.3
         aws.yml
+
 ```
         development:
           bucket: 'your_S3_bucket'
@@ -388,5 +387,5 @@ end
      gem 'paperclip-av-transcoder'
      gem 'will_paginate', '~> 3.1', '>= 3.1.5'
      gem 'aws-sdk', "> 2"
-     
+
 ```
