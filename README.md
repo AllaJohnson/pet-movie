@@ -24,35 +24,35 @@
 2. Создаем Линукс-пользователя и передаем ему права судо. /// Create a Linux-user and give it the rights of the sudo.
 
      2.1.
-
-     ```
+ ```
      ssh root@droplet's_IP_address
 
      $ dpkg-reconfigure locales # Для установки дополнительных языковых кодировок при необходимости
                                 # To install additional language encodings if necessary
      ru-utf8                    # Space, Enter, Enter
-    ```
+
+```
 
     2.2. Создаем пользователя deploy. /// User deploy creating.
 
-    ```
+```
      $ adduser deploy
      $ adduser deploy sudo
 
-     ```
+```
      2.3. Hа локальной машине. /// On local.
 
-    ```
+```
      $ ssh-copy-id deploy@droplet's_IP_address
-    ```
+```
 
 
      2.4. Заходим под юзером deploy и все остальное делаем под ним
           Enter as deploy and do everything else under it
 
-    ```
+```
           $ ssh deploy@droplet's_IP_address
-    ```
+```
 
 3. Установка rbenv и Ruby. /// Installing rbenv and Ruby.
 
@@ -61,15 +61,15 @@
 
     3.1. Обновляем пакеты и устанавливаем зависимости для rbenv и Ruby. /// Update the packages and install dependencies for rbenv and Ruby.
 
-    ```
+```
     $ sudo apt-get update
     $ sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
-    ```
+```
 
     3.2. Устанавливаем rbenv. /// Installing rbenv.
 
-    ```
+```
     $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
     $ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
@@ -99,12 +99,13 @@
      $ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
                       # Установит плагин руби-билд для rbenv
                       # Install the Ruby build plug-in for rbenv
-      ```
+
+```
 
 
   3.3. Устанавливаем Ruby. /// Installing Ruby.
 
-    ```
+```
      $ rbenv install 2.3.3
      $ rbenv global 2.3.3  # Назначаем главной версией
                            # Assign the main version
@@ -166,6 +167,7 @@
               http{...
                  client_max_body_size 8M;
               ....}
+
 ```
 
 
@@ -177,10 +179,11 @@
                                               # (узнать путь можно командой $ which ruby)
                                               # In the second line, we write the path to the established ruby
                                               # (you can find out the path by the $ which ruby command)
-```
-```
+
+
            passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
            passenger_ruby /home/deploy/.rbenv/shims/ruby;
+
 ```
 
        4.5. Настраиваем порт 80 nginx для нашего сайта. /// Configure port 80 nginx for our site
@@ -205,6 +208,7 @@
             rails_env production;
             root /home/deploy/pet-movie/current/public;
           }
+
 ```
 
          4.6. Создаем символьную ссылку с этого файла на файл /etc/nginx/sites-enabled/my-site. /// Create a symlink from this file to the file /etc/nginx/sites-enabled/my-site
@@ -212,6 +216,7 @@
 
 ```
            $ sudo ln -s /etc/nginx/sites-available/my-site  /etc/nginx/sites-enabled/my-site
+
 ```
 
          4.7. Удаляем файл./// Remove file /etc/nginx/sites-enabled/default.
@@ -221,17 +226,20 @@
 ```
        $ mkdir -p pet-movie/current/public  # Перед первым деплоем с Капистрано эту папку надо будет удалить!!!
                                                     # Before your first deploy with Capistrano this folder will have to be deleted!
+
 ```
 
             Создаем файл: /// Create file:
 
 ```
                $ echo 'Helo World!' > pet-movie/current/public/index.html
+
 ```
 
          4.9. Перезагружаем сервер. /// Restart server.
 ```
            $ sudo service nginx restart
+
 ```
            ##'Hello World!'
 
@@ -245,13 +253,14 @@
     $ createuser --pwprompt deploy
     $ createdb -O deploy pet-movie_production
     $\q
+
 ```
 
 
 6. Капистрано и деплой на сервер. /// Capistrano and deploy on server.
 
 
-   6.1. Gemfile  group development
+   6.1. Gemfile
 
 ```
 group :development do
@@ -263,8 +272,7 @@ group :development do
     # gem 'capistrano-rbenv', '~> 2.1'
 end
 
-```
-```
+
     $ bundle install
     $ bundle --binstubs
     $ cap install STAGES=production
@@ -285,6 +293,7 @@ end
     # require 'capistrano/rvm'
     # set :rvm_type, :user
     # set :rvm_ruby_version, '2.4.0'
+
 ```
 
     6.3 In config/deploy.rb
@@ -299,6 +308,7 @@ end
 
     # Default value for linked_dirs is []
     append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+
 ```
 
     6.4 In config/deploy/production.rb
@@ -307,6 +317,7 @@ end
     set :stage, :production
     # Replace 'droplet's_IP_address' with your server's IP address!
     server 'droplet's_IP_address', user: 'deploy', roles: %w{app db web}
+
 ```
 
 
@@ -317,6 +328,7 @@ end
 ```
     /home/deploy/pet-movie/shims/config/database.yml,
     /home/deploy/pet-movie/shims/config/secrets.yml.
+
 ```
 
         7.1
@@ -327,22 +339,26 @@ end
                database: my_DB_name
                username: deploy
                password: password
+
 ```
         7.2
 ```
         $ rake secret # Генерируем секретный ключ на локальной машине копируем и вставляем в этот файл
                       # Generate the secret key on the local machine copy and paste into this file
+
 ```
         secrets.yml:
 ```
         production:
           secret_key_base: 12325467tugjbmn.m;jhjhvfgdfdxfc vb..........................
+
 ```
 
     Если изпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)
 
 ```
     /home/deploy/pet-movie/shims/config/aws.yml
+
 ```
         7.3
         aws.yml
@@ -358,6 +374,7 @@ end
           access_key_id: 'your access_key__id on S3'
           secret_access_key: 'your secret_access_key on S3'
           s3_region: 'your region' (strong required for last version Paperclip only)
+
 ```
 
   8. Additional soft install on VPS DO:
@@ -371,4 +388,5 @@ end
      gem 'paperclip-av-transcoder'
      gem 'will_paginate', '~> 3.1', '>= 3.1.5'
      gem 'aws-sdk', "> 2"
+     
 ```
