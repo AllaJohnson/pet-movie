@@ -23,7 +23,8 @@
 ```
 2. Создаем Линукс-пользователя и передаем ему права судо. /// Create a Linux-user and give it the rights of the sudo.
 
-     2.1.
+2.1.
+
 ```
      ssh root@droplet's_IP_address
 
@@ -33,22 +34,21 @@
 
 ```
 
-    2.2. Создаем пользователя deploy. /// User deploy creating.
+2.2. Создаем пользователя deploy. /// User deploy creating.
 
 ```
      $ adduser deploy
      $ adduser deploy sudo
 
 ```
-     2.3. Hа локальной машине. /// On local.
+2.3. Hа локальной машине. /// On local.
 
 ```
      $ ssh-copy-id deploy@droplet's_IP_address
 ```
 
 
-     2.4. Заходим под юзером deploy и все остальное делаем под ним
-          Enter as deploy and do everything else under it
+2.4. Заходим под юзером deploy и все остальное делаем под ним. /// Enter as deploy and do everything else under him.
 
 ```
           $ ssh deploy@droplet's_IP_address
@@ -59,7 +59,7 @@
     https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
 
 
-    3.1. Обновляем пакеты и устанавливаем зависимости для rbenv и Ruby. /// Update the packages and install dependencies for rbenv and Ruby.
+3.1. Обновляем пакеты и устанавливаем зависимости для rbenv и Ruby. /// Update the packages and install dependencies for rbenv and Ruby.
 
 ```
     $ sudo apt-get update
@@ -67,7 +67,7 @@
 
 ```
 
-    3.2. Устанавливаем rbenv. /// Installing rbenv.
+3.2. Устанавливаем rbenv. /// Installing rbenv.
 
 ```
     $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -102,8 +102,7 @@
 
 ```
 
-
-  3.3. Устанавливаем Ruby. /// Installing Ruby.
+3.3. Устанавливаем Ruby. /// Installing Ruby.
 
 ```
      $ rbenv install 2.3.3
@@ -116,7 +115,7 @@
        /home/deploy/.rbenv/shims/ruby
 ```
 
-  3.4. Устанавливаем самый первый гем - gem bundle.
+3.4. Устанавливаем самый первый гем - gem bundle.
        Installing first gem - gem bundle.
 ```
      $ echo "gem: --no-document" > ~/.gemrc
@@ -172,7 +171,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
- 4.3. Редактируем файл. /// Change the file  /etc/nginx/passenger.conf
+4.3. Редактируем файл. /// Change the file  /etc/nginx/passenger.conf
 
 ```
          $ sudo vi /etc/nginx/passenger.conf  # Во второй строчке прписываем путь к установленному руби
@@ -186,7 +185,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
- 4.5. Настраиваем порт 80 nginx для нашего сайта. /// Configure port 80 nginx for our site
+ 4.4. Настраиваем порт 80 nginx для нашего сайта. /// Configure port 80 nginx for our site
 
             Создаем и заходим в файл: /// Create and enter the file:
 ```
@@ -210,7 +209,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
-4.6. Создаем символьную ссылку с этого файла на файл /etc/nginx/sites-enabled/my-site. /// Create a symlink from this file to the file /etc/nginx/sites-enabled/my-site
+4.5. Создаем символьную ссылку с этого файла на файл /etc/nginx/sites-enabled/my-site. /// Create a symlink from this file to the file /etc/nginx/sites-enabled/my-site
 
 
 ```
@@ -218,9 +217,9 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
-4.7. Удаляем файл./// Remove file /etc/nginx/sites-enabled/default.
+4.6. Удаляем файл./// Remove file /etc/nginx/sites-enabled/default.
 
-4.8. Создаем директорию: /// Create directory:
+4.7. Создаем директорию: /// Create directory:
 
 ```
        $ mkdir -p pet-movie/current/public  # Перед первым деплоем с Капистрано эту папку надо будет удалить!!!
@@ -235,7 +234,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
-4.9. Перезагружаем сервер. /// Restart server.
+4.8. Перезагружаем сервер. /// Restart server.
 
 ```
            $ sudo service nginx restart
@@ -354,7 +353,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
-    Если иcпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)
+Если иcпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)
 
 ```
     /home/deploy/pet-movie/shims/config/aws.yml
@@ -377,7 +376,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
-  8. Additional soft install on VPS DO:
+8. Additional soft install on VPS DO:
      - NodeJs
      - ImageMagik
 
