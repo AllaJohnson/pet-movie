@@ -2,35 +2,38 @@
 How to create droplet on DIGITALOCEAN UBUNTU 16.04 with NGINX,
 PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
 
-*)
-1.Создаем минимальный дроплет на digitalocean.com
- Droplet creating
+
+1. Создаем минимальный дроплет на digitalocean.com
+    Minimal Droplet creating
 
     1.1. Если не создавать ключ, то дроплет создается с паролем для root, который приходит на почту
          If you do not create a key, the droplet is created with a password for root, which comes to the mail
 
     1.2. Заходим по SSH с консоли локальной машины рутом
-    enter by SSH from the console of the local machine as root
-    $ ssh root@droplet's_IP_address # Подтверждаем пароль и меняем его на свой
-                                    # Confirm the password and change it to your  
+         Enter by SSH from the console of the local machine as root
 
-    $ ssh-keygen # Если нет ssh-ключа на локальной машине, то создаем его
-                 # If there is no ssh-key on the local machine, then we create it
+    $ ssh root@droplet's_IP_address  # Подтверждаем пароль и меняем его на свой
+                                     # Confirm the password and change it to your
 
-     $ls ~/.ssh/ # Появляются два файла в директории
-                 # Two files appear in the directory
-     id_rsa id_rsa.pub # Содержание второго файла копируем на сервер при создании дроплета
-                       3 The content of the second file we copy to the server when creating the droplet
-2. Создаем Линукс-пользователя и передаем ему права судо-
-   Create a Linux-user and give it the rights of the sudo-.
+    $ ssh-keygen  # Если нет ssh-ключа на локальной машине, то создаем его
+                  # If there is no ssh-key on the local machine, then we create it
+
+    $ls ~/.ssh/   # Появляются два файла в директории
+                  # Two files appear in the directory
+    id_rsa id_rsa.pub  # Содержание второго файла копируем на сервер при создании дроплета
+                        # The content of the second file we copy to the server when creating the droplet
+
+2. Создаем Линукс-пользователя и передаем ему права судо.
+   Create a Linux-user and give it the rights of the sudo.
 
      2.1. ssh root@droplet's_IP_address
      $ dpkg-reconfigure locales # Для установки дополнительных языковых кодировок при необходимости
-                                # To install additional language encodings if necessary   
+                                # To install additional language encodings if necessary
      ru-utf8 - дoбавляем..(пробел-Энтер-энтер)
 
      2.2. Создаем пользователя deploy
           User deploy creating
+
      $ adduser deploy
      $ adduser deploy sudo
 
@@ -43,8 +46,8 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
           Enter as deploy and do everything else under it
           $ ssh deploy@droplet's_IP_address
 
-3.Установка rbenv и Ruby
-  Installing rbenv and Ruby
+3. Установка rbenv и Ruby
+   Installing rbenv and Ruby
      https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
 
     3.1. Обновляем пакеты и устанавливаем зависимости для rbenv и Ruby.
@@ -55,6 +58,7 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
 
     3.2. Устанавливаем rbenv.
          Installing rbenv.
+
     $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
     $ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
@@ -80,9 +84,9 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
           esac
       }
 
-     $ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build  
+     $ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
                       # Установит плагин руби-билд для rbenv
-                      # Install the Ruby build plug-in for rbenv      
+                      # Install the Ruby build plug-in for rbenv
 
   3.3. Устанавливаем Ruby.
        Installing Ruby.
@@ -104,12 +108,13 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
 
 
 
-4.Nginx and Passenger
-  https://nginx.org/ru/
-  https://www.phusionpassenger.com/
-  https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/ - пошаговая установка Nginx-Passenger (Nginx-Passenger step-by-step installation)
+4. Nginx and Passenger
+   https://nginx.org/ru/
+   https://www.phusionpassenger.com/
+   https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/ - пошаговая установка Nginx-Passenger (Nginx-Passenger step-by-step installation)
 
       4.1. Установка Installing Passenger + Nginx
+
         # Install our PGP key and add HTTPS support for APT
         $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
         $ sudo apt-get install -y apt-transport-https ca-certificates
@@ -121,9 +126,9 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
         # Install Passenger + Nginx
         $ sudo apt-get install -y nginx-extras passenger
 
-       4.2. Редактируем файл /etc/nginx/nginx.conf
-       Заходим в файл:
-         $ sudo vi /etc/nginx/nginx.conf  
+       4.2. Редактируем файл Change the file  /etc/nginx/nginx.conf
+
+         $ sudo vi /etc/nginx/nginx.conf
 
          include /etc/nginx/passenger.conf;  # Найти и раскоментировать эту строку
                                              # Find end uncomment this line
@@ -132,30 +137,34 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
          If there is no such line, then you must enter it yourself.
 
       4.2.1. Если вы собираетесь загружать файлы (картинки, видео), то необходимо прописать максимальную
-      величину загружаемого файла в том же файле.If you are going to upload files (pictures, video), you need to set the maximum value of the downloaded file in the same file /etc/nginx/nginx.conf
+      величину загружаемого файла в том же файле.
+             If you are going to upload files (pictures, video), you need to set the maximum value of the downloaded file in the same file /etc/nginx/nginx.conf
 
-          $sudo vi /etc/nginx/nginx.conf
-            http{...
-               client_max_body_size 8M;
-            ....}
+          $ sudo vi /etc/nginx/nginx.conf
+              http{...
+                 client_max_body_size 8M;
+              ....}
 
 
        4.3. Редактируем файл Change the file  /etc/nginx/passenger.conf
 
-         $ sudo vi /etc/nginx/passenger.conf
-         во второй строчке прписываем путь к установленному руби (узнать путь можно командой $ which ruby)
-         In the second line, we write the path to the established ruby (you can find out the path by the $ which ruby command)
+         $ sudo vi /etc/nginx/passenger.conf  # Во второй строчке прписываем путь к установленному руби
+                                              # (узнать путь можно командой $ which ruby)
+                                              # In the second line, we write the path to the established ruby
+                                              # (you can find out the path by the $ which ruby command)
+
            passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
            passenger_ruby /home/deploy/.rbenv/shims/ruby;
 
        4.5. Настраиваем порт 80 nginx для нашего сайта
             Configure port 80 nginx for our site
-       Создаем и заходим в файл:
-       Create and enter the file:
 
-         $ sudo vi /etc/nginx/sites-available/my-site
-          Копируем, заменяя pet-movie на название своего приложения:
-          Copy by replacing the 'pet-movie' with the name of your application:
+            Создаем и заходим в файл:
+            Create and enter the file:
+
+         $ sudo vi /etc/nginx/sites-available/my-site  # Копируем, заменяя pet-movie на название своего приложения
+                                                       # Copy by replacing the 'pet-movie' with the name of your application
+
                     server {
             listen 80 default_server;
             listen [::]:80 default_server ipv6only=on;
@@ -179,10 +188,12 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
 
          4.8 Создаем директорию:
             Create directory:
+
                $ mkdir -p pet-movie/current/public # Перед первым деплоем с Капистрано эту папку надо будет удалить!!!
                                                     # Before your first deploy with Capistrano this folder will have to be deleted!
             Создаем файл:
             Create file:
+
                $ echo 'Helo World!' > pet-movie/current/public/index.html
 
          4.9. Перезагружаем сервер
@@ -199,10 +210,12 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
     $ sudo su - postgres
     $ createuser --pwprompt deploy
     $ createdb -O deploy pet-movie_production
+    $\q
 
 
 6. Капистрано и деплой на сервер
-Capistrano and deploy on server.
+   Capistrano and deploy on server.
+
    6.1. Gemfile group development
 
     gem 'capistrano', '~> 3.7', '>= 3.7.1'
@@ -212,13 +225,13 @@ Capistrano and deploy on server.
     # Add this if you're using rbenv
     # gem 'capistrano-rbenv', '~> 2.1'
 
-    Далее
-    Then
+
     $ bundle install
     $ bundle --binstubs
     $ cap install STAGES=production
 
     6.2.  Capfile
+
     require 'capistrano/rails'
     require 'capistrano/passenger'
 
@@ -233,10 +246,11 @@ Capistrano and deploy on server.
     # set :rvm_ruby_version, '2.4.0'
 
     6.3 In config/deploy.rb
+
     set :application, "pet-movie" # Название своего приложения
-                                  #Your application name
+                                  # Your application name
     set :repo_url, "git@bitbucket.org:AllaJohnson/pet-movie.git" # Адрес своего репо
-                                                                  #Your repo url   
+                                                                  #Your repo url
     # Default value for :linked_files is []
     append :linked_files, "config/database.yml", "config/secrets.yml", "config/aws.yml"
 
@@ -244,6 +258,7 @@ Capistrano and deploy on server.
     append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
     6.4 In config/deploy/production.rb
+
     set :stage, :production
     # Replace 'droplet's_IP_address' with your server's IP address!
     server 'droplet's_IP_address', user: 'deploy', roles: %w{app db web}
@@ -251,10 +266,13 @@ Capistrano and deploy on server.
 
 
 7. Первый деплой провалиться, так как нет файлов  database.yml, secrets.yml.
-   The first deploy failed, because there are no files database.yml, secrets.yml on your production app
+   The first deploy will be failed, because there are no files database.yml, secrets.yml on your production app
 
-    Создаем файлы на (Create files on) production database.yml, secrets.yml, aws.yml
-    (aws.yml - если изпользуем AWS S3 как хранилище (If you use AWS S3 as a storage))
+    Создаем файлы на (Create files on) production:
+    /home/deploy/pet-movie/shims/config/database.yml,
+    /home/deploy/pet-movie/shims/config/secrets.yml.
+
+
         7.1
         database.yml
             production:
@@ -263,28 +281,31 @@ Capistrano and deploy on server.
                username: deploy
                password: password
 
-        7.2   
-        $ rake secret # Генерируем секретный ключ на локальной машине копируем и вставляем в этот файл  
-                      # Generate the secret key on the local machine copy and paste into this file  
+        7.2
+        $ rake secret # Генерируем секретный ключ на локальной машине копируем и вставляем в этот файл
+                      # Generate the secret key on the local machine copy and paste into this file
         secrets.yml:
 
         production:
           secret_key_base: 12325467tugjbmn.m;jhjhvfgdfdxfc vb..........................
 
+    Если изпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)
+    /home/deploy/pet-movie/shims/config/aws.yml
 
         7.3
         aws.yml
-        development:
-        bucket: 'your_S3_bucket'
-        access_key_id: 'your access_key__id on S3'
-        secret_access_key: 'your secret_access_key on S3'
-        s3_region: 'your region' (strong required for last version Paperclip only)   
 
-          production:
-            bucket: 'your_S3_bucket'
-            access_key_id: 'your access_key__id on S3'
-            secret_access_key: 'your secret_access_key on S3'
-            s3_region: 'your region' (strong required for last version Paperclip only)   
+        development:
+          bucket: 'your_S3_bucket'
+          access_key_id: 'your access_key__id on S3'
+          secret_access_key: 'your secret_access_key on S3'
+          s3_region: 'your region' (strong required for last version Paperclip only)
+
+        production:
+          bucket: 'your_S3_bucket'
+          access_key_id: 'your access_key__id on S3'
+          secret_access_key: 'your secret_access_key on S3'
+          s3_region: 'your region' (strong required for last version Paperclip only)
 
 
   8. Additional soft install on VPS DO
