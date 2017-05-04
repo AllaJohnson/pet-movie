@@ -144,9 +144,11 @@
 
         # Install Passenger + Nginx
         $ sudo apt-get install -y nginx-extras passenger
+
 ```
 
-       4.2. Редактируем файл. /// Change the file  /etc/nginx/nginx.conf
+       4.2. Редактируем файл. /// Change the file.  /etc/nginx/nginx.conf
+
 
 ```
          $ sudo vi /etc/nginx/nginx.conf
@@ -239,7 +241,7 @@
 
 ```
 
-##Hello World!
+## Hello World!
 
 
 
