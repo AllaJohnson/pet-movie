@@ -131,7 +131,7 @@
 
    https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/ - пошаговая установка Nginx-Passenger (Nginx-Passenger step-by-step installation)
 
-      4.1. Установка. /// Installing Passenger + Nginx
+4.1. Установка. /// Installing Passenger + Nginx
 
 ```
         # Install our PGP key and add HTTPS support for APT
@@ -147,7 +147,7 @@
 
 ```
 
-       4.2. Редактируем файл. /// Change the file.  /etc/nginx/nginx.conf
+4.2. Редактируем файл. /// Change the file.  /etc/nginx/nginx.conf
 
 
 ```
@@ -160,9 +160,9 @@
 ```
 
 
-      4.2.1. Если вы собираетесь загружать файлы (картинки, видео), то необходимо прописать максимальную
-      величину загружаемого файла в том же файле. /// If you are going to upload files (pictures, video),
-      you need to set the maximum value of the downloaded file in the same file /etc/nginx/nginx.conf
+4.2.1. Если вы собираетесь загружать файлы (картинки, видео), то необходимо прописать максимальную
+величину загружаемого файла в том же файле. /// If you are going to upload files (pictures, video),
+you need to set the maximum value of the downloaded file in the same file /etc/nginx/nginx.conf
 
 ```
           $ sudo vi /etc/nginx/nginx.conf
@@ -171,7 +171,8 @@
               ....}
 
 ```
-       4.3. Редактируем файл. /// Change the file  /etc/nginx/passenger.conf
+
+ 4.3. Редактируем файл. /// Change the file  /etc/nginx/passenger.conf
 
 ```
          $ sudo vi /etc/nginx/passenger.conf  # Во второй строчке прписываем путь к установленному руби
@@ -185,7 +186,7 @@
 
 ```
 
-       4.5. Настраиваем порт 80 nginx для нашего сайта. /// Configure port 80 nginx for our site
+ 4.5. Настраиваем порт 80 nginx для нашего сайта. /// Configure port 80 nginx for our site
 
             Создаем и заходим в файл: /// Create and enter the file:
 ```
@@ -209,7 +210,7 @@
 
 ```
 
-         4.6. Создаем символьную ссылку с этого файла на файл /etc/nginx/sites-enabled/my-site. /// Create a symlink from this file to the file /etc/nginx/sites-enabled/my-site
+4.6. Создаем символьную ссылку с этого файла на файл /etc/nginx/sites-enabled/my-site. /// Create a symlink from this file to the file /etc/nginx/sites-enabled/my-site
 
 
 ```
@@ -217,9 +218,9 @@
 
 ```
 
-         4.7. Удаляем файл./// Remove file /etc/nginx/sites-enabled/default.
+4.7. Удаляем файл./// Remove file /etc/nginx/sites-enabled/default.
 
-         4.8. Создаем директорию: /// Create directory:
+4.8. Создаем директорию: /// Create directory:
 
 ```
        $ mkdir -p pet-movie/current/public  # Перед первым деплоем с Капистрано эту папку надо будет удалить!!!
@@ -234,7 +235,7 @@
 
 ```
 
-         4.9. Перезагружаем сервер. /// Restart server.
+4.9. Перезагружаем сервер. /// Restart server.
 
 ```
            $ sudo service nginx restart
@@ -260,7 +261,7 @@
 6. Капистрано и деплой на сервер. /// Capistrano and deploy on server.
 
 
-   6.1. Gemfile
+6.1. Gemfile
 
 ```
     group :development do
@@ -278,7 +279,7 @@
         $ cap install STAGES=production
 ```
 
-    6.2.  Capfile
+6.2.  Capfile
 
 ```
     require 'capistrano/rails'
@@ -296,7 +297,7 @@
 
 ```
 
-    6.3 In config/deploy.rb
+6.3 In config/deploy.rb
 
 ```
     set :application, "pet-movie" # Название своего приложения
@@ -311,7 +312,7 @@
 
 ```
 
-    6.4 In config/deploy/production.rb
+6.4 In config/deploy/production.rb
 
 ```
     set :stage, :production
@@ -331,8 +332,8 @@
 
 ```
 
-        7.1
-        database.yml
+7.1    database.yml
+
 ```
             production:
                adapter: postegresql
@@ -341,15 +342,13 @@
                password: password
 
 ```
-        7.2
+7.2 secrets.yml
+
 ```
         $ rake secret # Генерируем секретный ключ на локальной машине копируем и вставляем в этот файл
-                      # Generate the secret key on the local machine copy and paste into this file
+                      # Generate the secret key on the local machine copy and paste into  secrets.yml:
 
-```
-        secrets.yml:
 
-```
         production:
           secret_key_base: 12325467tugjbmn.m;jhjhvfgdfdxfc vb..........................
 
@@ -359,9 +358,9 @@
 
 ```
     /home/deploy/pet-movie/shims/config/aws.yml
+
 ```
-        7.3
-        aws.yml
+7.3 aws.yml
 
 ```
         development:
