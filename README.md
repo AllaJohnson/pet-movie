@@ -13,6 +13,8 @@
     1.2. Заходим по SSH с консоли локальной машины рутом
 
          Enter by SSH from the console of the local machine as root
+
+         
 ```
     $ ssh root@droplet's_IP_address  # Подтверждаем пароль и меняем его на свой
                                      # Confirm the password and change it to your
