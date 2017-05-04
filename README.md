@@ -3,15 +3,15 @@ How to create droplet on DIGITALOCEAN UBUNTU 16.04 with NGINX,
 PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
 
 
-1. Создаем минимальный дроплет на digitalocean.com
-    Minimal Droplet creating
+1. *Создаем минимальный дроплет на digitalocean.com
+    Minimal Droplet creating*
 
-    1.1. Если не создавать ключ, то дроплет создается с паролем для root, который приходит на почту
-         If you do not create a key, the droplet is created with a password for root, which comes to the mail
+    1.1. Если не создавать ключ, то дроплет создается с паролем для 'root', который приходит на почту
+         If you do not create a key, the droplet is created with a password for 'root', which comes to the mail
 
     1.2. Заходим по SSH с консоли локальной машины рутом
          Enter by SSH from the console of the local machine as root
-
+,,,
     $ ssh root@droplet's_IP_address  # Подтверждаем пароль и меняем его на свой
                                      # Confirm the password and change it to your
 
@@ -22,20 +22,25 @@ PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
                   # Two files appear in the directory
     id_rsa id_rsa.pub  # Содержание второго файла копируем на сервер при создании дроплета
                         # The content of the second file we copy to the server when creating the droplet
+,,,
 
-2. Создаем Линукс-пользователя и передаем ему права судо.
-   Create a Linux-user and give it the rights of the sudo.
+2. *Создаем Линукс-пользователя и передаем ему права судо.
+   Create a Linux-user and give it the rights of the sudo.*
 
      2.1. ssh root@droplet's_IP_address
+     ,,,
      $ dpkg-reconfigure locales # Для установки дополнительных языковых кодировок при необходимости
                                 # To install additional language encodings if necessary
      ru-utf8 - дoбавляем..(пробел-Энтер-энтер)
+     ,,,
 
-     2.2. Создаем пользователя deploy
-          User deploy creating
+     2.2. *Создаем пользователя deploy
+          User deploy creating*
+          ,,,
 
      $ adduser deploy
      $ adduser deploy sudo
+     ,,,
 
      2.3. Hа локальной машине
           On local
