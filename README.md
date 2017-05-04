@@ -1,8 +1,8 @@
 # README
-** ## How to create droplet on DIGITALOCEAN UBUNTU 16.04 with NGINX,
-## PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO**
+## How to create droplet on DIGITALOCEAN UBUNTU 16.04 with NGINX,
+## PASSENGER, RUBY, POSTGRESQL and deploy with CAPISTRANO
 
-*1.  Создаем минимальный дроплет на digitalocean.com
+1.  Создаем минимальный дроплет на digitalocean.com
 
     Minimal Droplet creating
 
@@ -12,7 +12,7 @@
 
     1.2. Заходим по SSH с консоли локальной машины рутом
 
-         Enter by SSH from the console of the local machine as root*
+         Enter by SSH from the console of the local machine as root
 ```
     $ ssh root@droplet's_IP_address  # Подтверждаем пароль и меняем его на свой
                                      # Confirm the password and change it to your
@@ -25,10 +25,10 @@
     id_rsa id_rsa.pub  # Содержание второго файла копируем на сервер при создании дроплета
                         # The content of the second file we copy to the server when creating the droplet
 ```
-*2. Создаем Линукс-пользователя и передаем ему права судо.
-   Create a Linux-user and give it the rights of the sudo.*
+2. Создаем Линукс-пользователя и передаем ему права судо.
+   Create a Linux-user and give it the rights of the sudo.
 
-     *2.1.*
+     2.1.
 
      ```
      ssh root@droplet's_IP_address
@@ -38,49 +38,49 @@
      ru-utf8                    # Space, Enter, Enter
     ```
 
-    *2.2. Создаем пользователя deploy
-          User deploy creating*
+    2.2. Создаем пользователя deploy
+          User deploy creating
 
     ```
      $ adduser deploy
      $ adduser deploy sudo
 
      ```
-     *2.3. Hа локальной машине*
+     2.3. Hа локальной машине
 
-          *On local*
+          On local
 
     ```
      $ ssh-copy-id deploy@droplet's_IP_address
     ```
 
 
-     *2.4. Заходим под юзером deploy и все остальное делаем под ним
-          Enter as deploy and do everything else under it*
+     2.4. Заходим под юзером deploy и все остальное делаем под ним
+          Enter as deploy and do everything else under it
 
     ```
           $ ssh deploy@droplet's_IP_address
     ```
 
-*3. Установка rbenv и Ruby*
+3. Установка rbenv и Ruby
 
-   *Installing rbenv and Ruby*
+   Installing rbenv and Ruby
 
-     *https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)*
+    https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
 
 
-    *3.1. Обновляем пакеты и устанавливаем зависимости для rbenv и Ruby.*
+    3.1. Обновляем пакеты и устанавливаем зависимости для rbenv и Ruby.
 
-         *Update the packages and install dependencies for rbenv and Ruby.*
+         Update the packages and install dependencies for rbenv and Ruby.
     ```
     $ sudo apt-get update
     $ sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
     ```
 
-    *3.2. Устанавливаем rbenv.*
+    3.2. Устанавливаем rbenv.
 
-         *Installing rbenv.*
+         Installing rbenv.
     ```
     $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -114,9 +114,9 @@
       ```
 
 
-  *3.3. Устанавливаем Ruby.*
+  3.3. Устанавливаем Ruby.
 
-       *Installing Ruby.*
+       Installing Ruby.
     ```
      $ rbenv install 2.3.3
      $ rbenv global 2.3.3  # Назначаем главной версией
@@ -128,14 +128,14 @@
        /home/deploy/.rbenv/shims/ruby
 ```
 
-  *3.4. Устанавливаем самый первый гем - gem bundle.
-       Installing first gem - gem bundle.*
+  3.4. Устанавливаем самый первый гем - gem bundle.
+       Installing first gem - gem bundle.
 ```
      $ echo "gem: --no-document" > ~/.gemrc
      $ gem install bundler
 ```
 
-*4. Nginx and Passenger
+4. Nginx and Passenger
 
    https://nginx.org/ru/
 
@@ -143,7 +143,7 @@
 
    https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/ - пошаговая установка Nginx-Passenger (Nginx-Passenger step-by-step installation)
 
-      4.1. Установка Installing Passenger + Nginx*
+      4.1. Установка Installing Passenger + Nginx
 
 ```
         # Install our PGP key and add HTTPS support for APT
@@ -158,9 +158,9 @@
         $ sudo apt-get install -y nginx-extras passenger
 ```
 
-       *4.2. Редактируем файл
+       4.2. Редактируем файл
 
-       Change the file  /etc/nginx/nginx.conf*
+       Change the file  /etc/nginx/nginx.conf
 ```
 
          $ sudo vi /etc/nginx/nginx.conf
@@ -172,11 +172,11 @@
 ```
 
 
-      *4.2.1. Если вы собираетесь загружать файлы (картинки, видео), то необходимо прописать максимальную
+      4.2.1. Если вы собираетесь загружать файлы (картинки, видео), то необходимо прописать максимальную
       величину загружаемого файла в том же файле.
 
              If you are going to upload files (pictures, video),
-      you need to set the maximum value of the downloaded file in the same file /etc/nginx/nginx.conf*
+      you need to set the maximum value of the downloaded file in the same file /etc/nginx/nginx.conf
 
 ```
           $ sudo vi /etc/nginx/nginx.conf
@@ -186,7 +186,7 @@
 ```
 
 
-       *4.3. Редактируем файл Change the file  /etc/nginx/passenger.conf*
+       4.3. Редактируем файл Change the file  /etc/nginx/passenger.conf
 
 ```
 
@@ -200,13 +200,13 @@
            passenger_ruby /home/deploy/.rbenv/shims/ruby;
 ```
 
-       *4.5. Настраиваем порт 80 nginx для нашего сайта
+       4.5. Настраиваем порт 80 nginx для нашего сайта
 
             Configure port 80 nginx for our site
 
             Создаем и заходим в файл:
 
-            Create and enter the file:*
+            Create and enter the file:
 
   ```
          $ sudo vi /etc/nginx/sites-available/my-site  # Копируем, заменяя pet-movie на название своего приложения
@@ -228,42 +228,42 @@
           }
 ```
 
-         *4.6. Создаем символьную ссылку с этого файла на файл /etc/nginx/sites-enabled/my-site
+         4.6. Создаем символьную ссылку с этого файла на файл /etc/nginx/sites-enabled/my-site
 
-              Create a symlink from this file to the file /etc/nginx/sites-enabled/my-site*
+              Create a symlink from this file to the file /etc/nginx/sites-enabled/my-site
 ```
 
            $ sudo ln -s /etc/nginx/sites-available/my-site  /etc/nginx/sites-enabled/my-site
 ```
 
-         *4.7. Удаляем файл /etc/nginx/sites-enabled/default
+         4.7. Удаляем файл /etc/nginx/sites-enabled/default
 
          4.8. Создаем директорию:
 
-            Create directory:*
+            Create directory:
 
 ```
                $ mkdir -p pet-movie/current/public  # Перед первым деплоем с Капистрано эту папку надо будет удалить!!!
                                                     # Before your first deploy with Capistrano this folder will have to be deleted!
 ```
 
-            *Создаем файл:
-            Create file:*
+            Создаем файл:
+            Create file:
 ```
                $ echo 'Helo World!' > pet-movie/current/public/index.html
 ```
 
-         *4.9. Перезагружаем сервер
+         4.9. Перезагружаем сервер
 
-              Restart server*
+              Restart server
 ```
            $ sudo service nginx restart
 ```
-  ##         'Hello World!'
+           ##'Hello World!'
 
 
 
-*5. Postgresql install*
+5. Postgresql install
 
 ```
     $ sudo apt-get install postgresql postgresql-contrib libpq-dev
@@ -274,12 +274,12 @@
 ```
 
 
-*6. Капистрано и деплой на сервер
+6. Капистрано и деплой на сервер
 
    Capistrano and deploy on server.
 
 
-   6.1. Gemfile group development*
+   6.1. Gemfile group development
 
 ```
     gem 'capistrano', '~> 3.7', '>= 3.7.1'
@@ -296,7 +296,7 @@
     $ cap install STAGES=production
 ```
 
-    *6.2.  Capfile*
+    6.2.  Capfile
 
 ```
     require 'capistrano/rails'
@@ -313,7 +313,7 @@
     # set :rvm_ruby_version, '2.4.0'
 ```
 
-    *6.3 In config/deploy.rb*
+    6.3 In config/deploy.rb
 
 ```
     set :application, "pet-movie" # Название своего приложения
@@ -327,7 +327,7 @@
     append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 ```
 
-    *6.4 In config/deploy/production.rb*
+    6.4 In config/deploy/production.rb
 
 ```
     set :stage, :production
@@ -336,11 +336,11 @@
 ```
 
 
-*7. Первый деплой провалиться, так как нет файлов  database.yml, secrets.yml.
+7. Первый деплой провалиться, так как нет файлов  database.yml, secrets.yml.
 
    The first deploy will be failed, because there are no files database.yml, secrets.yml on your production app
 
-    Создаем файлы на (Create files on) production:*
+    Создаем файлы на (Create files on) production:
 
 ```
     /home/deploy/pet-movie/shims/config/database.yml,
@@ -367,7 +367,7 @@
           secret_key_base: 12325467tugjbmn.m;jhjhvfgdfdxfc vb..........................
 ```
 
-    *Если изпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)*
+    Если изпользуем AWS S3 как хранилище (If you use AWS S3 as a storage)
 
 ```
     /home/deploy/pet-movie/shims/config/aws.yml
@@ -388,11 +388,11 @@
           s3_region: 'your region' (strong required for last version Paperclip only)
 ```
 
-  *8. Additional soft install on VPS DO:
+  8. Additional soft install on VPS DO:
      - NodeJs
      - ImageMagik
 
-     additional gems in Gemfile*
+     additional gems in Gemfile
 
 ```
      gem 'paperclip'
