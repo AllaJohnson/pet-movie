@@ -187,7 +187,8 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
  4.4. Настраиваем порт 80 nginx для нашего сайта. /// Configure port 80 nginx for our site
 
-            Создаем и заходим в файл: /// Create and enter the file:
+Создаем и заходим в файл: /// Create and enter the file:
+
 ```
          $ sudo vi /etc/nginx/sites-available/my-site  # Копируем, заменяя pet-movie на название своего приложения
                                                        # Copy by replacing the 'pet-movie' with the name of your application
@@ -227,7 +228,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 ```
 
-            Создаем файл: /// Create file:
+Создаем файл: /// Create file:
 
 ```
                $ echo 'Helo World!' > pet-movie/current/public/index.html
@@ -323,7 +324,7 @@ you need to set the maximum value of the downloaded file in the same file /etc/n
 
 7. Первый деплой провалиться, так как нет файлов  database.yml, secrets.yml. /// The first deploy will be failed, because there are no files database.yml, secrets.yml on your production app
 
-    Создаем файлы /// Create files on production:
+Создаем файлы /// Create files on production:
 
 ```
     /home/deploy/pet-movie/shims/config/database.yml,
